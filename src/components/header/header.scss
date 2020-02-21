@@ -1,0 +1,27 @@
+@import '../app/app.scss';
+
+.header {
+  font-size: 36px;
+  background-color: $color-yellow;
+  color: $color-black;
+  height: 40px;
+  padding: 15px 60px;
+  font-family: $font-title;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    width: 40px;
+    margin-right: 24px;
+  }
+
+  &__label {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 28px;
+  }
+}
