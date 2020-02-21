@@ -17,34 +17,37 @@ class Feed extends Component {
     }
 
     render() {
-        const { posts } = this.state;
-        const nodes = posts.map((post, index) => (
-            <Post {...post} key={index} onDeleteClick={this.handleDelete}/>
-        ));
-        const feed = <div className="feed">{ nodes }</div> ;
-        const msg = <div className="placeholder">You publish nothing! Use the form above to add post</div> ;
-
+        const content = this.renderContent();
         return (
             <>
                 <FeedControls onAddClick={this.handleAdd}/>
-                { nodes.length ? feed : msg }
+                { content }
             </>
         )
     }
 
-    // render() {
-    //     const { posts } = this.state;
-    //
-    //     if (!posts.length) {
-    //         return placeholder;
-    //     }
-    //
-    //     return (
-    //         <div className="feed">
-    //             { posts.map((post, index) => <Post key={index} post={post} />) }
-    //         </div>
-    //     )
-    // }
+    renderContent() {
+        const { posts } = this.state;
+        const placeholder = (
+            <div className="placeholder">
+                You publish nothing! Use the form above to add post
+            </div>
+        );
+
+        if (!posts.length) {
+            return placeholder;
+        }
+
+        const nodes = posts.map((post, index) => (
+            <Post {...post} key={index} onDeleteClick={this.handleDelete}/>
+        ));
+
+        return (
+            <div className="feed">
+                { nodes }
+            </div>
+        );
+    }
 
     handleDelete(postId) {
         const { posts } = this.state;
@@ -66,7 +69,6 @@ class Feed extends Component {
             text: postText,
             date: new Date()
         };
-        console.log(newPost);
         newFeed.push(newPost);
         sortByDate(newFeed);
 
