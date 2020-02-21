@@ -16,3 +16,9 @@
   border: 1px solid $color-yellow;
   padding: 10px;
 }
+
+@media (max-width: 767px) {
+  .feed {
+    width: 80%;
+  }
+}
